@@ -38,11 +38,13 @@
   xdg.configFile."fuzzel/fuzzel.ini".source =
     ./dotfiles/fuzzel/fuzzel.ini;
 
+  # notificaciones por mako
   services.mako.enable = true;
-  services.polkit-gnome.enable = true;
 
   xdg.configFile."mako/config".source =
     ./dotfiles/mako/config;
+
+  services.polkit-gnome.enable = true;
 
   # niri
   xdg.configFile."niri/config.kdl".source =

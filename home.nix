@@ -35,20 +35,23 @@
   # lanzador y servicios del escritorio
   programs.fuzzel.enable = true;
 
-  xdg.configFile."fuzzel/fuzzel.ini".source =
-    ./dotfiles/fuzzel/fuzzel.ini;
+  xdg.configFile."fuzzel/fuzzel.ini".source = ./dotfiles/fuzzel/fuzzel.ini;
 
   # notificaciones por mako
   services.mako.enable = true;
 
-  xdg.configFile."mako/config".source =
-    ./dotfiles/mako/config;
+  xdg.configFile."mako/config".source = ./dotfiles/mako/config;
+    
+  # indicador de volumen y brillo
+  services.swayosd.enable = true;
+
+  xdg.configFile."swayosd/config.toml".source = ./dotfiles/swayosd/config.toml;
+  xdg.configFile."swayosd/style.css".source = ./dotfiles/swayosd/style.css;
 
   services.polkit-gnome.enable = true;
 
   # niri
-  xdg.configFile."niri/config.kdl".source =
-    ./dotfiles/niri/config.kdl;
+  xdg.configFile."niri/config.kdl".source = ./dotfiles/niri/config.kdl;
 
   # waybar
   programs.waybar = {
@@ -58,11 +61,9 @@
   };
 
   # archivos de waybar
-  xdg.configFile."waybar/config".source =
-  ./dotfiles/waybar/config.jsonc;
+  xdg.configFile."waybar/config".source = ./dotfiles/waybar/config.jsonc;
 
-  xdg.configFile."waybar/style.css".source =
-  ./dotfiles/waybar/style.css;
+  xdg.configFile."waybar/style.css".source = ./dotfiles/waybar/style.css;
 
   # kitty
   programs.kitty = {

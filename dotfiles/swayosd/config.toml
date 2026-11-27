@@ -1,0 +1,12 @@
+[server]
+
+# posición
+top_margin = 0.92
+
+# límites
+max_volume = 100
+min_brightness = 5
+
+# comportamiento
+show_percentage = true
+keyboard_backlight = false

@@ -1,0 +1,50 @@
+/* ventana */
+window#osd {
+    background: #090909;
+    border: 2px solid #303030;
+    border-radius: 0;
+    box-shadow: none;
+}
+
+/* espacio interior */
+window#osd #container {
+    margin: 4px 10px;
+}
+
+/* tipografía */
+window#osd label {
+    font-family: "Inter";
+    font-size: 12px;
+    font-weight: 600;
+    color: #d0d0d0;
+}
+
+/* iconos */
+window#osd image {
+    color: #d0d0d0;
+    -gtk-icon-transform: scale(0.5);
+}
+
+/* barra de progreso */
+window#osd progressbar {
+    min-height: 6px;
+    border-radius: 0;
+    background: transparent;
+    border: none;
+}
+
+/* fondo de la barra */
+window#osd trough {
+    min-height: 6px;
+    border-radius: 0;
+    border: none;
+    background: #333333;
+}
+
+/* relleno de la barra */
+window#osd progress {
+    min-height: 6px;
+    border-radius: 0;
+    border: none;
+    background: #d0d0d0;
+}

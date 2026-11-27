@@ -1,0 +1,35 @@
+# tipografía
+font=Inter
+font-size=14
+
+# fondo
+color=090909
+
+# indicador
+indicator-idle-visible
+indicator-radius=45
+indicator-thickness=5
+
+# colores
+inside-color=090909
+inside-ver-color=090909
+inside-wrong-color=090909
+inside-clear-color=090909
+
+ring-color=505050
+ring-ver-color=d0d0d0
+ring-wrong-color=888888
+ring-clear-color=505050
+
+key-hl-color=e6e6e6
+bs-hl-color=888888
+text-color=d0d0d0
+text-ver-color=d0d0d0
+text-wrong-color=d0d0d0
+text-clear-color=d0d0d0
+separator-color=00000000
+line-uses-inside
+
+# comportamiento
+ignore-empty-password
+show-failed-attempts

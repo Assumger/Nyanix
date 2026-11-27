@@ -1,0 +1,90 @@
+input {
+  keyboard {
+    xkb {
+      layout "latam"
+    }
+  }
+}
+
+// decoración de ventanas
+prefer-no-csd
+
+layout {
+  gaps 0
+
+  focus-ring {
+    off
+  }
+
+  border {
+    on
+    width 2
+    active-color "#666666"
+    inactive-color "#090909"
+  }
+}
+
+// fondo de pantalla
+spawn-sh-at-startup "exec swaybg -i \"$HOME/fondos_pantalla/rezeCM.jpg\" -m fill"
+
+animations {
+  on
+}
+
+
+cursor {
+  xcursor-theme "Bibata-Modern-Ice"
+  xcursor-size 24
+}
+
+binds {
+  // aplicaciones
+  Mod+T { spawn "kitty"; }
+  Mod+E { spawn "nautilus"; }
+  Mod+D { spawn "fuzzel"; }
+  Mod+B { spawn "brave-origin"; }
+
+  // ventanas y espacios de trabajo
+  Mod+Q { close-window; }
+  Mod+Z { focus-column-left; }
+  Mod+X { focus-column-right; }
+  Mod+Up { focus-workspace-up; }
+  Mod+Down { focus-workspace-down; }
+  Mod+O { toggle-overview; }
+  Mod+F { maximize-column; }
+  Mod+Shift+E { quit; }
+
+  Mod+1 { focus-workspace 1; }
+  Mod+2 { focus-workspace 2; }
+  Mod+3 { focus-workspace 3; }
+  Mod+4 { focus-workspace 4; }
+  Mod+5 { focus-workspace 5; }
+  Mod+6 { focus-workspace 6; }
+  Mod+7 { focus-workspace 7; }
+  Mod+8 { focus-workspace 8; }
+  Mod+9 { focus-workspace 9; }
+
+  // mover la columna enfocada a otro espacio
+  Mod+Ctrl+1 { move-column-to-workspace 1; }
+  Mod+Ctrl+2 { move-column-to-workspace 2; }
+  Mod+Ctrl+3 { move-column-to-workspace 3; }
+  Mod+Ctrl+4 { move-column-to-workspace 4; }
+  Mod+Ctrl+5 { move-column-to-workspace 5; }
+  Mod+Ctrl+6 { move-column-to-workspace 6; }
+  Mod+Ctrl+7 { move-column-to-workspace 7; }
+  Mod+Ctrl+8 { move-column-to-workspace 8; }
+  Mod+Ctrl+9 { move-column-to-workspace 9; }
+
+  // bloquear la pantalla
+  Super+Alt+L allow-when-locked=true { spawn "swaylock"; }
+
+  // capturas de pantalla
+  Print { screenshot; }
+
+  // volumen y brillo
+  XF86AudioRaiseVolume allow-when-locked=true { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "5%+" "-l" "1.0"; }
+  XF86AudioLowerVolume allow-when-locked=true { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "5%-"; }
+  XF86AudioMute allow-when-locked=true { spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SINK@" "toggle"; }
+  XF86MonBrightnessUp allow-when-locked=true { spawn "brightnessctl" "--class=backlight" "set" "+10%"; }
+  XF86MonBrightnessDown allow-when-locked=true { spawn "brightnessctl" "--class=backlight" "set" "10%-"; }
+}

@@ -1,76 +1,37 @@
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 
 {
-  # 1. Hardware detectado durante la instalacion.
-  #    Este archivo lo genera nixos-generate-config: NO copiarlo de otra PC.
+  # hardware generado durante la instalación
   imports = [
     ./hardware-configuration.nix
     <home-manager/nixos>
   ];
-  # java para preparar los archivos de minecraft
-  programs.java = {
-    enable = true;
-    package = pkgs.jdk25;
-  };
 
-  # llavero para las credenciales de las aplicaciones
-  services.gnome.gnome-keyring.enable = true;
-  
-  # compatibilidad con ejecutables externos
-  programs.nix-ld = {
-    enable = true;
-
-    libraries = with pkgs; [
-      # ventanas y gráficos
-      libxkbcommon
-      libxcb
-      wayland
-      vulkan-loader
-      libglvnd
-      libx11
-      libxcursor
-      libxext
-      libxi
-      libxrandr
-      libxrender
-      libxxf86vm
-
-      # sonido y dispositivos
-      alsa-lib
-      udev
-
-      # fuentes e integración
-      fontconfig
-      freetype
-      dbus
-
-      # dependencias del runtime de java
-      zlib
-      libxtst
-    ];
-  };
-
-  # 2. Arranque UEFI.
+  # arranque uefi
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  # 3. Nombre, idioma y zona horaria.
-  networking.hostName = "nami";
+  # autenticación para el bloqueo de pantalla
+  security.pam.services.swaylock = {};
+
+  # nombre, idioma y zona horaria
+  networking.hostName = "Reze-PC";
   time.timeZone = "America/Mexico_City";
   i18n.defaultLocale = "es_MX.UTF-8";
 
-  # 4. Red y firmware (la conexion no depende de Noctalia).
+  # red, firmware, gráficos y bluetooth
   networking.networkmanager.enable = true;
   hardware.enableRedistributableFirmware = true;
   hardware.graphics.enable = true;
   hardware.bluetooth.enable = true;
   hardware.bluetooth.powerOnBoot = true;
-  
-  # GESTIÓN DE ARCHIVOS Y DISPOSITIVOS
+
+  # archivos, dispositivos y credenciales
   services.gvfs.enable = true;
   services.udisks2.enable = true;
+  services.gnome.gnome-keyring.enable = true;
 
-  # 5. Audio: PipeWire y WirePlumber.
+  # audio
   security.rtkit.enable = true;
   services.pipewire = {
     enable = true;
@@ -79,20 +40,20 @@
     wireplumber.enable = true;
   };
 
-  # 6. Bateria, energia y permisos para los controles de Noctalia.
+  # batería, energía y permisos
   services.upower.enable = true;
   services.power-profiles-daemon.enable = true;
   security.polkit.enable = true;
 
-  # 7. Memoria: swap comprimida, sin particion swap.
+  # intercambio comprimido en ram
   zramSwap.enable = true;
   zramSwap.memoryPercent = 50;
 
-  # 8. Escritorio: compositor Niri.
+  # escritorio
   programs.niri.enable = true;
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
 
-  # 9. Inicio de sesion por terminal con greetd/tuigreet.
+  # inicio de sesión
   services.greetd = {
     enable = true;
     settings.default_session = {
@@ -101,16 +62,15 @@
     };
   };
 
-  # 10. Cuenta personal. La contrasena se crea AL FINAL de nixos-install.
+  # cuenta personal y shell
+  programs.zsh.enable = true;
   users.users.miyu = {
     isNormalUser = true;
-
     shell = pkgs.zsh;
-
     extraGroups = [ "wheel" "networkmanager" ];
   };
 
-  # 11. Herramientas generales y de diagnostico.
+  # herramientas generales
   environment.systemPackages = with pkgs; [
     git
     neovim
@@ -118,17 +78,33 @@
     usbutils
   ];
 
-  # 12. Home Manager usa los mismos paquetes que NixOS.
+  # gestor de contraseñas
+  programs._1password-gui = {
+    enable = true;
+    polkitPolicyOwners = [ "miyu" ];
+  };
+  # permitir únicamente 1password como software no libre
+  nixpkgs.config.allowUnfreePredicate = pkg:
+    builtins.elem (lib.getName pkg) [
+      "1password"
+  ];
+  
+  # fuentes del escritorio e iconos
+  fonts.packages = with pkgs; [
+    inter 
+    nerd-fonts.symbols-only
+    jetbrains-mono
+  ];
+
+  # integrar home manager
   home-manager.useGlobalPkgs = true;
   home-manager.useUserPackages = true;
   home-manager.users.miyu = import ./home.nix;
 
-  # 13. Optimizar el almacen sin borrar generaciones automaticamente.
+  # optimizar el almacén sin borrar generaciones
   nix.settings.auto-optimise-store = true;
 
-  # 14. Compatibilidad inicial de la instalacion, no fija versiones.
+  # versión inicial de compatibilidad
   system.stateVersion = "26.05";
 
-  # 15. Shell del sistema
-  programs.zsh.enable = true;
 }

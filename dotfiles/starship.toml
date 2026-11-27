@@ -1,0 +1,23 @@
+add_newline = false
+format = "[](fg:#DDDDDD)$username[](fg:#DDDDDD bg:#C4C4C4)$directory[](fg:#C4C4C4 bg:#ADADAD)$time[](fg:#ADADAD)$line_break$character"
+
+[character]
+error_symbol = "[❯](fg:#BEBEBE)"
+success_symbol = "[❯](fg:#BEBEBE)"
+
+[directory]
+format = "[ $path ]($style)"
+style = "bold fg:#292929 bg:#C4C4C4"
+truncate_to_repo = false
+truncation_length = 3
+
+[time]
+disabled = false
+format = "[  $time ]($style)"
+style = "bold fg:#292929 bg:#ADADAD"
+time_format = "%H:%M"
+
+[username]
+format = "[ ▲ $user ]($style)"
+show_always = true
+style_user = "bold fg:#292929 bg:#DDDDDD"

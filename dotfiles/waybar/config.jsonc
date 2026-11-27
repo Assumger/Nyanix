@@ -1,0 +1,53 @@
+{
+    "layer": "top",
+    "position": "top",
+    "height": 28,
+    "spacing": 4,
+
+    "modules-left": ["niri/workspaces"],
+    "modules-center": ["clock"],
+    "modules-right": ["pulseaudio", "battery"],
+
+    "niri/workspaces": {
+        "format": "{index}"
+    },
+
+    "clock": {
+        "format": "{:%d %b · %H:%M}",
+        "locale": "es_MX.UTF-8",
+        "interval": 60,
+        "tooltip": false
+    },
+
+    "pulseaudio": {
+        "format": "vol: {volume}%",
+        "format-muted": "vol: mute",
+        "on-click": "pavucontrol",
+        "scroll-step": 5,
+        "max-volume": 100,
+        "tooltip": false
+    },
+
+    "battery": {
+        "interval": 60,
+        "format": "bat: {capacity}%",
+        "format-charging": "bat: {capacity}%+",
+        "format-plugged": "bat: {capacity}%=",
+        "format-full": "bat: 100%",
+        "tooltip": false,
+
+	"states": {
+            "warning": 20,
+            "critical": 10
+        },
+
+        "events": {
+            "on-discharging-warning": "notify-send -u normal 'Batería baja' 'Queda un 20% o menos de batería.'",
+            "on-discharging-critical": "notify-send -u critical 'Batería crítica' 'Conecta el cargador pero en fa.'",
+            "on-charging-100": "notify-send -u normal 'Batería cargada' 'La batería ha alcanzado el 100% yupi'"
+        }
+    }
+
+
+
+}

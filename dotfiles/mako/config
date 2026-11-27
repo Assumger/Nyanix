@@ -1,0 +1,35 @@
+# tipografía
+font=Inter 11
+format=<b>%s</b>\n%b
+markup=1
+icons=1
+
+# apariencia
+background-color=#090909
+text-color=#d0d0d0
+border-color=#303030
+progress-color=over #333333
+
+# dimensiones
+width=300
+height=150
+margin=10
+padding=15
+border-size=2
+border-radius=0
+
+# posición
+anchor=bottom-right
+layer=top
+outer-margin=0,20,20,0
+
+# comportamiento
+default-timeout=5000
+ignore-timeout=0
+max-visible=3
+
+# notificaciones críticas
+[urgency=critical]
+border-color=#e6e6e6
+default-timeout=0
+ignore-timeout=1

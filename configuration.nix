@@ -77,17 +77,6 @@
     pciutils
     usbutils
   ];
-
-  # gestor de contraseñas
-  programs._1password-gui = {
-    enable = true;
-    polkitPolicyOwners = [ "miyu" ];
-  };
-  # permitir únicamente 1password como software no libre
-  nixpkgs.config.allowUnfreePredicate = pkg:
-    builtins.elem (lib.getName pkg) [
-      "1password"
-  ];
   
   # fuentes del escritorio e iconos
   fonts.packages = with pkgs; [

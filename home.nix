@@ -23,8 +23,6 @@
     pavucontrol
     libnotify
     vscodium
-    proton-vpn
-    qbittorrent
   ];
 
   # bloqueo de pantalla

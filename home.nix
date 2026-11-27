@@ -16,6 +16,7 @@
     brave-origin
     firefox
     nautilus
+    filen-desktop
     swaybg
     xwayland-satellite
     brightnessctl
